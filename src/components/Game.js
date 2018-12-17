@@ -37,9 +37,13 @@ class Game extends React.Component {
   }
 
   jumpTo = ({ target: { value } }) => {
+    const { history } = this.state
     this.setState({
       stepNumber: value,
-      xIsNext: value % 2 === 0
+      xIsNext: value % 2 === 0,
+      history: history.filter((turn, index) => {
+        return index <= value
+      })
     })
   }
 
@@ -48,13 +52,18 @@ class Game extends React.Component {
     const current = history[stepNumber]
     const winner = calculateWinner(current.squares)
 
-    const moves = history.map((step, move) => (
-      <li key={move}>
-        <button value={move} onClick={this.jumpTo}>
-          {move ? `Go to move #${move}` : 'Go to game start'}
-        </button>
-      </li>
-    ))
+    const moves = history.map((step, move) => {
+      if (move === history.length - 1) {
+        return null
+      }
+      return (
+        <li key={move}>
+          <button value={move} onClick={this.jumpTo}>
+            {move ? `Go to move #${move}` : 'Go to game start'}
+          </button>
+        </li>
+      )
+    })
 
     let status
     if (winner) {
