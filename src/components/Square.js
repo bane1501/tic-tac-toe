@@ -1,9 +1,10 @@
 import React from 'react'
 
-function Square(props) {
+function Square({ id, handleClick, squares }) {
+  const value = squares[id] || null
   return (
-    <button className='square' onClick={props.onClick}>
-      {props.value}
+    <button id={id} className='square' onClick={handleClick}>
+      {value}
     </button>
   )
 }

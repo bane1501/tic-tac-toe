@@ -1,37 +1,26 @@
 import React from 'react'
 import Square from './Square'
 
-class Board extends React.Component {
-  renderSquare(i) {
-    return (
-      <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-      />
-    )
-  }
-
-  render() {
-    return (
-      <div>
-        <div className='board-row'>
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className='board-row'>
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className='board-row'>
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+function Board({ squares, handleClick }) {
+  return (
+    <div>
+      <div className='board-row'>
+        <Square id='0' squares={squares} handleClick={handleClick} />
+        <Square id='1' squares={squares} handleClick={handleClick} />
+        <Square id='2' squares={squares} handleClick={handleClick} />
       </div>
-    )
-  }
+      <div className='board-row'>
+        <Square id='3' squares={squares} handleClick={handleClick} />
+        <Square id='4' squares={squares} handleClick={handleClick} />
+        <Square id='5' squares={squares} handleClick={handleClick} />
+      </div>
+      <div className='board-row'>
+        <Square id='6' squares={squares} handleClick={handleClick} />
+        <Square id='7' squares={squares} handleClick={handleClick} />
+        <Square id='8' squares={squares} handleClick={handleClick} />
+      </div>
+    </div>
+  )
 }
 
 export default Board
